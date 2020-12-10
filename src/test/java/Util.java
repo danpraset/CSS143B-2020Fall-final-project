@@ -127,6 +127,19 @@ public class Util {
         );
     }
 
+    // new int tests
+    public static List<String> getDocumentsForNewIntTest() {
+        return new ArrayList<> (
+                Arrays.asList
+                        (
+                        "winter is cold because it is   december",
+                        "the final project and december is almost over",
+                        "we are nearing the end of the quarter with this final project"
+                )
+        );
+    }
+
+
     public static List<Integer> emptyResult() {
         return new ArrayList<>();
     }

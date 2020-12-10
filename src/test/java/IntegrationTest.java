@@ -108,6 +108,53 @@ public class IntegrationTest {
         return testCases;
     }
 
+    // Extra credit new integration test
+    @Test
+    public void newTestIntegration() {
+
+        List<TestCase> cases = getNewTestCase();
+        for (TestCase testCase : cases) {
+            List<Integer> actual = searcher.search(
+                    testCase.target,
+                    indexer.index(testCase.documents)
+            );
+            assertEquals(testCase.expect, actual);
+        }
+    }
+
+    private List<TestCase> getNewTestCase() {
+        List<String> documents = Util.getDocumentsForNewIntTest();
+
+        List<TestCase> testCases = new ArrayList<>(Arrays.asList(
+                new TestCase(
+                        documents,
+                        "",
+                        Util.emptyResult()
+                ),
+                new TestCase(
+                        documents,
+                        "winter is cold",
+                        new ArrayList<>(Arrays.asList(0))
+                ),
+                new TestCase(
+                        documents,
+                        "december is almost over",
+                        new ArrayList<>(Arrays.asList(1))
+                ),
+                new TestCase(
+                        documents,
+                        "final project",
+                        new ArrayList<>(Arrays.asList(1, 2))
+                ),
+                new TestCase(
+                        documents,
+                        "nearing the end",
+                        new ArrayList<>(Arrays.asList(2))
+                )
+        ));
+        return testCases;
+    }
+
     private class TestCase {
         private List<String> documents;
         private String target;
